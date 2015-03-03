@@ -1,0 +1,38 @@
+<div id="topic-list">
+	<% for (var i = 0, size = topics.length; i < size; i++) { 
+		var topic = topics[i];
+	%>
+	<div class="one-topic">
+		<div class="topic-title-wrapper">
+			<a class="topic-title" href="/topic/<%= topic._id %>" title="<%= topic.title %>">
+				<span><%= topic.title %></span>
+			</a>
+		</div>
+		<div class="topic-author">
+			<label>作者：</label>
+			<a href="/user/<%= topic.author.loginname %>">
+				<span><%= topic.author.loginname %></span>
+			</a>
+		</div>
+		<div class="topic-content">
+			<% var str = topic.content;
+				str = str.replace(/\r\n/g, "<br />").substring(0, 100);
+				if (topic.content.length > 100) {
+					str += "...";
+					str += "<br /><a href='/topic/" + topic._id + "'>阅读全文</a>";
+				}				
+			%>
+			<%- str %>
+		</div>		
+	</div>
+	<div class="topic-message">
+		<span class="reply-count pull-left">
+			<label>回复数: </label><span class="reply-count-value"><%= topic.reply_count %></span>
+		</span>			
+			
+		<span class='last-time pull-right'>
+			<label>最后更新时间: </label><span class="last_active_time"><%= topic.friendly_create_at %></span>
+		</span>
+	</div>
+	<% } %>
+</div>

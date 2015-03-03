@@ -1,0 +1,19 @@
+<%- include head.ejs %>
+<body>
+	<%- include navbar.ejs %>
+	
+	<div class="container">
+		<% if (isError) {	%>
+		<%= error %>
+		<% } %>
+		<form action="/reg" method="post"> 
+			用户名：<input type="text" name="loginname" />
+			密码：<input type="text" name="password" />
+			确认密码：<input type="text" name="re_password" />
+			<button type="submit">提交</button>
+		</form>
+	</div>
+	
+</body>
+	<%- include scripts.ejs %>
+</html>

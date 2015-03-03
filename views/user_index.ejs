@@ -1,0 +1,60 @@
+<%- include head.ejs %>
+
+<body>
+	<%- include navbar.ejs %>
+	
+	<div class="container-fluid">
+		<div class="span3">
+			<div id="sidebar">
+				<div class="area-title">用户信息</div>
+				<div class="area-content">
+					<div class="area-content-inner">
+						<div>用户：<%= user.loginname %></div>
+						<div>粉丝：<%= user.following_count %></div>
+						<div>关注:<%= user.follower_count %></div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="span9">
+				<div class="area-title"><%= user.loginname %>的个人主页</div>
+				<div class="area-content">
+					<div class="area-content-inner">
+						<p>注册时间：<% var create_date = new Date(user.create_at);%><%= create_date %></p>
+					</div>
+				</div>
+				
+				<div class="area-title">最近创建的话题</div>
+				<div class="area-content">
+					<div class="area-content-inner">
+						<ul class="topic-list">
+						<%
+							for (var i = 0, len = recent_topics.length; i < len; i++) {
+								var topic = recent_topics[i];
+						%>
+						<li><span  class="reply-count"><%= topic.reply_count %>个回复</span><span class="topic-title"><a href= "../topic/<%= topic._id %>"><%= topic.title %></a></span><span class="topic-update-time pull-right"><%= topic.friendly_create_at %></span></li>
+						<% } %>
+						</ul>
+					</div>
+				</div>
+				<div class="area-title">最近参与的话题</div>
+				<div class="area-content">
+					<div class="area-content-inner">
+						<ul class="topic-list">
+							<%
+								for (i = 0, len = recent_replies; i < len; i++) {
+									var reply_topic = recent_replies[i];
+							%>
+							<li><span><%= reply_topic.replies_count %>个回复</span><span><a href= "../topic/<%= reply_topic._id %>"><%= reply_topic.title %></a></span><span><%= reply_topic.friendly_create_at %></span></li>
+							<% } %>
+						</ul>
+					</div>
+				</div>
+			</div>	
+		</div>
+	<%- include footer.ejs %>
+</body>
+	<%- include scripts.ejs %>
+</html>

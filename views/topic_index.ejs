@@ -1,0 +1,51 @@
+<%- include head.ejs %>
+
+<body>
+	<%- include navbar.ejs %>
+	
+	<div class="container-fluid">
+		<div class="span3">
+			<%- include sidebar.ejs %>
+		</div>
+		<div class="span9">
+			<div class="area-title">阅读话题</div>
+			<div class="area-content">
+				<div class="one-topic">
+					<div class="topic-title-wrapper">
+						<%= topic.title %>
+					</div>
+					<div class="topic-author">
+						<label>作者：</label>
+							<a href="/user/<%= topic.author.loginname %>">
+								<%= topic.author.loginname %>
+							</a>
+					</div>
+					<div class="topic-content">
+					<% var str = topic.content;
+					   str = str.replace(/\r\n/g, "<br />")
+					%>
+					<p><%- str %></p>
+					</div>	
+				</div>
+				<div class="topic-message">
+					<span class="reply-count pull-left">
+						<label>回复数: </label><span class="reply-count-value"><%= topic.reply_count %></span>
+					</span>	
+					<% if (current_user.loginname === topic.author.loginname) { %>
+					<span class="topic-action pull-left"><a href="/topic/<%= topic._id %>/delete">删除此话题</a></span>
+					<span class="topic-action pull-left"><a href="/topic/<%= topic._id%>/edit">编辑话题</a></span>
+					<% } %>
+			
+					<span class='last-time pull-right'>
+						<label>最后更新时间: </label><span class="last_active_time"><%= topic.friendly_create_at %></span>
+					</span>
+				</div>
+			</div>
+			
+			</div>
+		</div>		
+	</div>
+	<%- include footer.ejs %>
+</body>
+	<%- include scripts.ejs %>
+</html>

@@ -1,0 +1,13 @@
+<div id="sidebar">
+	<div class="area-title">个人信息</div>
+	<div class="area-content">
+		<div class="area-content-inner">
+			<div>用户：<%= current_user.loginname %></div>
+			<div>话题数：<%= current_user.topic_count %></div>
+			<div>关注：<%= current_user.following_count %></div>
+			<div>粉丝：<%= current_user.follower_count %></div>
+			<a class="link-green" href="/user/<%= current_user.loginname %>">个人主页</a>
+			<a class="link-green" href="/topic/add">发起话题</a>
+		</div>
+	</div>	
+</div>

@@ -1,0 +1,11 @@
+html, body, div, ul {
+	margin: 0;
+	padding: 0;
+}
+html {
+	height: 200%;
+}
+body {
+	min-height: 90%;
+	position: relative;
+}

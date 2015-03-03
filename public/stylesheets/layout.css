@@ -1,0 +1,100 @@
+body {
+  padding-top: 60px;
+  font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI"			,"Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 1.5em;
+  color: #333;
+  background-color: #e1e1e1;
+}
+.navbar-fixed-top {
+	position: fixed;
+	top:0;
+	left: 0;
+	right: 0;
+	margin-bottom: 0;
+}
+/*中央容器*/
+.container {
+	width: 70%;
+	margin: 0 auto;
+}
+.container:after {
+	display: table;
+	content:"";
+	line-height: 0;
+	clear: both;
+}
+.container-fluid {
+	width: 90%;
+	margin: 0 auto;
+}
+.container-fluid:after {
+	content: "";
+	display: table;
+	line-height: 0;
+	clear: both;
+}
+/*背景突出显示块*/
+.hero-unit {
+	background-color: #eeeeee;
+	padding: 60px;
+	border-radius: 6px;
+}
+.area-title {
+	background-color: #f6f6f6;
+	padding: 10px;
+	border-radius: 6px 6px 0 0;
+}
+.area-title:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.area-content {
+	background-color: white;
+	margin-bottom: 10px;
+}
+.area-content-inner{
+	padding: 10px;
+}
+/*嵌套列*/
+.row {
+	margin-left: -20px;
+}
+.row:after {
+	display: table;
+	content: "";
+	line-height: 0;
+	clear:both;
+}
+/*栅格系统*/
+div[class*="span"] {
+	float: left;
+	margin-left: 20px;
+}
+.span3 {
+	width: 24%;
+}
+.span4 {
+	width: 32%;
+}
+.span9 {
+	width: 72%;
+}
+.pull-left {
+	float: left;
+}
+.pull-right {
+	float: right;
+}
+/*页脚*/
+footer {
+	text-align: center;
+	height: 8%;	
+}
+
+
+
+
+

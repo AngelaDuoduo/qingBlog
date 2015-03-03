@@ -1,0 +1,24 @@
+<%- include head.ejs %>
+
+<body>
+	<%- include navbar.ejs %>
+	<div class="container">		
+		<% if (isError) { %>
+		<%= error %>
+		<% } %>
+		<div class="area-title">登录</div>
+		<div class="area-content">
+			<div class="area-content-inner">
+				<form action="/login" method="post" class="login-form center">
+					<div class="control-group"><div class="form-label">用户名：</div><div class="control"><input type="text" name="loginname" /></div></div>
+					<div class="control-group"><div class="form-label">密码：</div><div class="control"><input type="text" name="password" /></div></div>
+					<button type="submit" class="btn btn-info indent">登录</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<%- include footer.ejs %>
+</body>
+	<%- include scripts.ejs %>
+</html>
+	

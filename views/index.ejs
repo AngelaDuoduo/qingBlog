@@ -1,0 +1,43 @@
+<%- include head.ejs %>
+
+<body>
+	<%- include navbar.ejs %>
+	
+	<!-- 这个地方必须得先typeof , 不能直接current_user == undefined啊啊啊啊-->
+	<% if (typeof(current_user) !== 'undefined') { %> 
+		<div class="container-fluid">
+			<div class="span3">
+				<%- include sidebar.ejs %>
+			</div>
+			<div class="span9">
+				<div class="area-title">全部话题</div>
+					<% if(topics && topics.length > 0) { %>
+						<%- include topics.ejs %>
+					<% } else { %>
+						<p>无话题</p>
+					<% } %>
+				</div>
+		</div>
+	<% } else { %>		
+		<div class="container">
+			<div class="area-content">
+				<div class="area-content-inner">
+					<h1>欢迎来到Qing Blog</h1>
+					<a class="btn btn-primary" href="/login">登录</a>
+					<a class="btn" href="/reg">立即注册</a>
+					</p>
+				</div>
+			</div>
+			<br />
+				<div class="area-title">全部话题</div>
+				<% if(topics && topics.length > 0) { %>
+				<%- include topics.ejs %>
+				<% } else { %>
+				<p>无话题</p>
+				<% } %>
+		</div>	
+	<% } %>		
+	<%- include footer.ejs %>	
+</body>
+  <%- include scripts.ejs %>
+</html>
