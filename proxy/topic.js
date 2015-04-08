@@ -42,7 +42,7 @@ exports.getCountByQuery = function(query, callback) {
 };
 
 /*根据关键词获取主题列表*/
-exports.getTopicsByQuery = function(query,options, callback) {
+exports.getTopicsByQuery = function(query, options, callback) {
 
 	Topic.find(query, null, options, function(err, results) {	
 		if (err) {
@@ -94,7 +94,7 @@ exports.getFullTopic = function(id, callback) {
 			}
 			proxy.emit('author', author);
 		}));
-	Reply.getRepliesByTopicId(topic._id, proxy.done('replies'));
+		Reply.getRepliesByTopicId(topic._id, proxy.done('replies'));
 	
 	}));	
 }

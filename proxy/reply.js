@@ -32,7 +32,7 @@ exports.getReplyById = function(id, callback) {
 	});
 };
 
-/*根据主题Id, 或许回复列表。*/
+/*根据主题Id, 获取回复列表。*/
 exports.getRepliesByTopicId = function(id, callback) {
 	Reply.find({topic_id: id}, "", {sort: 'create_at'}, function(err, replies) {
 		if (err) {
@@ -41,9 +41,9 @@ exports.getRepliesByTopicId = function(id, callback) {
 		if (replies.length === 0) {
 			return callback(null, []);
 		}
-		
+
 		for (var j = 0; j < replies.length; j++) {
-			var author_id = replies[j].author.id;
+			var author_id = replies[j].author_id;
 			(function(i) {
 				User.getUserById(author_id, function(err, author) {
 					if (err) {
@@ -51,10 +51,13 @@ exports.getRepliesByTopicId = function(id, callback) {
 					}
 					replies[i].author = author || {_id: ''};
 					replies[i].friendly_create_at = replies[i].create_at;
+					if (i === replies.length - 1) {
+						return callback(null, replies);		
+					} 
 				});				
 			}(j));
-			
 		}
+			
 	});
 };
 

@@ -2,7 +2,6 @@
 
 <body>
 	<%- include navbar.ejs %>
-	
 	<!-- 这个地方必须得先typeof , 不能直接current_user == undefined啊啊啊啊-->
 	<% if (typeof(current_user) !== 'undefined') { %> 
 		<div class="container-fluid">
@@ -16,8 +15,9 @@
 					<% } else { %>
 						<p>无话题</p>
 					<% } %>
-				</div>
-		</div>
+				<div class="pager"></div>	
+				</div>				
+			</div>
 	<% } else { %>		
 		<div class="container">
 			<div class="area-content">
@@ -35,7 +35,9 @@
 				<% } else { %>
 				<p>无话题</p>
 				<% } %>
-		</div>	
+				<div class="pager"></div>
+		</div>
+		
 	<% } %>		
 	<%- include footer.ejs %>	
 </body>

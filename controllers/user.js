@@ -35,8 +35,8 @@ exports.index = function(req, res, next) {
 			proxy.done(function(replies) {
 				var topic_ids = [];
 				for (var i = 0; i < replies.length; i++) {
-					if (topic_ids.indexOf(replies[i],topic_id.toString()) < 0) {
-						topic_id.push(replies[i].topic_id.toString());
+					if (topic_ids.indexOf(replies[i].topic_id.toString()) < 0) {
+						topic_ids.push(replies[i].topic_id.toString());
 					}
 				}
 				var query = {_id: {"$in": topic_ids}};

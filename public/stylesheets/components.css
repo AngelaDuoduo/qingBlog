@@ -1,3 +1,4 @@
+/*通用标签*/
 a {
   color: #00B7FF;
   text-decoration: none;
@@ -19,7 +20,7 @@ input[type='text'] {
 	border-radius: 4px;
 	width: 200px;
 }
-nput[type='text'], textarea {
+input[type='text'], textarea {
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -137,6 +138,8 @@ ul.nav {
 	border-radius: 6px;
 	font-size: 17.5px;
 }
+
+/*话题*/
 .one-topic {
 	border-bottom: 1px solid #f6f6f6;
 	padding: 10px;	
@@ -188,6 +191,18 @@ a.topic-title {
 .topic-message a{
 	color: #32273d;
 }
+.topic-message .add-reply{
+	margin-left: 10px;
+}
+.reply-list li{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	padding: 5px;
+}
+.reply-list li:hover{
+	background-color: #e1e1e1;	
+}
+
+/*表单*/
 .control-group {
 	margin-bottom: 10px;
 }
@@ -243,9 +258,20 @@ ul.topic-list li:hover {
 	font-size: 18px;
 	line-height: 20px;
 }
-
-
-
+#addReply{
+	width: 95%;
+	margin: 5px auto;
+	min-height: 70px;
+}
+#addReply textarea{
+	display: block;
+	width: 99%;
+	margin: 0;
+	padding: 2px;
+}
+#addReply input[type='submit'] {
+	margin-top: 3px;
+}
 
 
 

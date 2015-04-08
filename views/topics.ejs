@@ -29,7 +29,9 @@
 		<span class="reply-count pull-left">
 			<label>回复数: </label><span class="reply-count-value"><%= topic.reply_count %></span>
 		</span>			
-			
+		<span class="add-reply">
+			<a href="/topic/<%=topic._id%>/reply/">评论</a>
+		</span>		
 		<span class='last-time pull-right'>
 			<label>最后更新时间: </label><span class="last_active_time"><%= topic.friendly_create_at %></span>
 		</span>

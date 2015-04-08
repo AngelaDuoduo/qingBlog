@@ -29,7 +29,7 @@
 				</div>
 				<div class="topic-message">
 					<span class="reply-count pull-left">
-						<label>回复数: </label><span class="reply-count-value"><%= topic.reply_count %></span>
+						<label>回复数: </label><span class="reply-count-value"><%= topic.reply_count%></span>
 					</span>	
 					<% if (current_user.loginname === topic.author.loginname) { %>
 					<span class="topic-action pull-left"><a href="/topic/<%= topic._id %>/delete">删除此话题</a></span>
@@ -39,6 +39,38 @@
 					<span class='last-time pull-right'>
 						<label>最后更新时间: </label><span class="last_active_time"><%= topic.friendly_create_at %></span>
 					</span>
+				</div>
+				<% if (addReply) { %>					
+					<form id="addReply" method="post" action="/topic/<%= topic._id %>/reply">
+						<textarea name="replyContent" autofocus></textarea>
+						<input type="submit" class="btn btn-info pull-right" value="评论"/>
+					</form>
+				<% } %>
+				<div class="area-content">
+					<div class="area-content-inner">
+						<ul class="reply-list">
+							<% 
+								if (typeof topic.replies !== 'undefined' && topic.replies.length > 0) { 
+								for (var i = 0; i < topic.replies.length; i++) { 
+									var reply = topic.replies[i];
+							%>
+									<li>
+										<span class="reply-author">
+											<a href="/user/<%=reply.author.loginname%>"><%=reply.author.loginname%></a>
+										</span>
+										<span class="reply-title">
+											<%=reply.content%>
+										</span>
+										<span class="topic-update-time pull-right">
+											<%=reply.create_at%>
+										</span>
+									</li>
+							<% 
+									} 
+								}	
+							%>
+						</ul>
+					</div>
 				</div>
 			</div>
 			

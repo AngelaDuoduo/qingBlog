@@ -36,9 +36,12 @@ module.exports = function(app) {
 	
 	app.get("/user/:name", user.index);
 	
-	app.get("/topic/:topic_id", topic.index);
+	app.get("/topic/:tid", topic.index);
 	app.get("/topic/:tid/edit", auth.userRequired, topic.showEdit);
 	app.post('/topic/:tid/edit', auth.userRequired, topic.update);
 	app.get("/topic/:tid/delete", auth.userRequired, topic.delete);
+
+	app.get("/topic/:tid/reply", topic.index);
+	app.post("/topic/:tid/reply", topic.addReply);
 	
 }

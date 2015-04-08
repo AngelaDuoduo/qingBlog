@@ -1,0 +1,85 @@
+body{
+	background-color: #eee;
+}
+.pager{
+	width: 500px;
+	margin: 10px auto;
+}
+.duoduo-pager{
+	height: 30px;
+	width: 100%;
+	text-align: center;
+	zoom: 1;
+}
+.duoduo-pager:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+.duoduo-pager .pager-lastBoard,
+.duoduo-pager .pager-nextBoard{
+	float: left;
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+	cursor: pointer;
+	margin: 5px 0;
+}
+.duoduo-pager .pager-lastBoard{
+	border-right: 8px solid #00ace9;
+}
+.duoduo-pager .pager-nextBoard{
+	border-left: 8px solid #00ace9;
+}
+.duoduo-pager .pager-lastPage,
+.duoduo-pager .pager-nextPage{
+	float: left;
+	margin: 0 5px;
+	height: 24px;
+	line-height: 24px;
+	width: 60px;
+	color: white;
+	background-color: #00ace9;
+	border-radius: 10px;
+	font-size: 12px;
+	cursor: pointer;
+	margin: 0 8px;
+}
+.duoduo-pager .pager-nextPage{
+	margin-left: 0px;
+}
+.duoduo-pager ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	float: left;
+}
+.duoduo-pager li{
+	display: inline;
+	float: left;
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	margin-right: 5px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	color: #00ace9;
+	cursor: pointer;
+}
+.duoduo-pager li:hover{
+	background-color: #00ace9;
+	color: #fff;
+}
+.duoduo-pager li.pager-active{
+	background-color: #00ace9;
+	color: #fff;
+}
+.duoduo-pager .page-disable{
+	background-color: #ccc;
+	color: #fff;
+}
+.duoduo-pager .pager-nextBoard.board-disable{
+	border-left-color: #ccc;
+}
+.duoduo-pager .pager-lastBoard.board-disable{
+	border-right-color: #ccc;
+}

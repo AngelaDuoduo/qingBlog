@@ -2,22 +2,27 @@ var eventProxy = require("eventproxy");
 var validator = require("validator");
 var User = require("../proxy").User;
 var Topic = require("../proxy").Topic;
+var Reply = require("../proxy").Reply;
 var TopicCollect = require("../proxy").TopicCollect;
 var config = require("../settings");
 
 exports.index = function(req, res) {
-	var topic_id = req.params.topic_id;
+	var topic_id = req.params.tid;
 	if (topic_id.length !== 24) {
 		return res.render("error", {message: "此话题不存在或已经被删除"});
 	}
 	var ep = new eventProxy();
-	ep.all("topic", "other_topics", "no_reply_topics", function(topic, other_topics, no_reply_topics) {
-		console.log(topic);
-		res.render("topic_index", {
+	ep.all("topic", function(topic) {
+		var args = {
 			topic: topic,
-			author_other_topics: other_topics,
-			no_reply_topics: no_reply_topics
-		});
+			author_other_topics: [],
+			no_reply_topics: [],
+			addReply: false
+		};
+		if (req.url.indexOf("reply") !== -1) {
+			args.addReply = true;
+		}
+		res.render("topic_index", args);
 	});
 	Topic.getFullTopic(topic_id, ep.done(function(message, topic, author, replies) {
 		if (message) {
@@ -37,13 +42,6 @@ exports.index = function(req, res) {
 				ep.emit("topic", topic);
 			}));
 		}
-		
-		var options = {limit: 5, sort: '-last_reply_at'};
-		var query = {author_id: topic.author_id, _id: {"$nin": [topic._id]}};
-		Topic.getTopicsByQuery(query, options, ep.done('other_topics'));
-		
-		var options2 = {limit: 5, sort: '-create_at'};
-		Topic.getTopicsByQuery({reply_count: 0}, options2, ep.done("no_reply_topics"));
 			
 	}));
 };
@@ -178,6 +176,40 @@ exports.delete = function(req, res) {
 				req.session.save();
 			});
 			res.redirect("/");
+		});
+	});
+};
+
+exports.addReply = function(req, res) {
+	var content = validator.trim(req.body.replyContent),
+		author_id = req.session.user._id,
+		topic_id = req.params.tid;
+	Reply.newAndSave(content, topic_id, author_id, null, function(err, reply) {
+		Topic.getTopicById(topic_id, function(err, topic, author) {
+			if (err) {
+				return res.render("error", {message: "您回复的该条评论不存在."});
+			} else {
+				topic.reply_count += 1;
+				topic.last_reply_at = reply.create_at;
+				topic.save(function(err, topic){
+					if (err) {
+						return res.render("error", {message: "评论计数失败."});
+					}
+				});
+			}
+		});
+		User.getUserById(author_id, function(err, author) {
+			if (err) {
+				return res.render("error", {message: "回复计数失败."});
+			}
+			author.reply_count += 1;
+			author.save(function(err, author) {
+				if (err) {
+					return res.render("error", {message: "评论计数失败."});
+				} else {
+					return res.redirect("/topic/" + topic_id);
+				}
+			})
 		});
 	});
 };
